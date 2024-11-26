@@ -4,12 +4,19 @@ int main(){
 
     SDL_Window* window = NULL;
     SDL_Renderer* renderer = NULL;
+    SDL_Texture* texture = NULL;
 
     int initCheck = initSDL(&window, &renderer);
     if(initCheck != 0)
         return initCheck;
 
     SDL_Event event;
+
+    texture = loadTexture("assets/textures/test.jpg", &renderer);
+
+    if(texture == NULL)
+        return -6;
+
     unsigned char quit = 0;
     while(!quit){
         while(SDL_PollEvent(&event)){
