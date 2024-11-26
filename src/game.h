@@ -29,4 +29,10 @@ int initSDL(SDL_Window** window, SDL_Renderer** renderer){
     return 0;
 }
 
+void updateGameState();
+
+void updateScreen(SDL_Renderer** renderer);
+
+void uppdateAudio();
+
 SDL_Texture* loadTexture(char* texturePath, SDL_Renderer** renderer);
