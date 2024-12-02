@@ -36,3 +36,11 @@ void updateScreen(SDL_Renderer** renderer);
 void uppdateAudio();
 
 SDL_Texture* loadTexture(char* texturePath, SDL_Renderer** renderer);
+
+void closeGame(SDL_Window** window, SDL_Renderer** renderer){
+    SDL_Log("Game closes");
+    SDL_DestroyRenderer(*renderer);
+    SDL_DestroyWindow(*window);
+
+    SDL_Quit();
+}

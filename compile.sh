@@ -26,7 +26,8 @@ FLAGS+=($SDL_FLAGS)
 
 # Set the source file and output binary names
 SOURCE_FILE="game.c"
-OUTPUT_BINARY="game"
+OUTPUT_BINARY_LINUX="game"
+OUTPUT_BINARY_WINDOWS="game.exe"
 
 # Check if source file is present
 if [ ! -f "$SOURCE_FILES_LOCATION/$SOURCE_FILE" ]; then
@@ -39,6 +40,7 @@ echo "Souce file present"
 
 DEBUG=false
 CLEAN=false
+WINDOWS=false
 while [[ $# -gt 0 ]]; do
     case "$1" in
         -d|--debug)
@@ -46,6 +48,9 @@ while [[ $# -gt 0 ]]; do
             shift ;;
         -c|--clean)
             CLEAN=true
+            shift ;;
+        -w|--windows)
+            WINDOWS=true
             shift ;;
         *)
             echo "Unknown option: $1"
@@ -65,9 +70,14 @@ if $CLEAN; then
     rm -rf "$BIN_FILES_LOCATION"/*
 fi
 
-# Compile the source file
-echo "Compiling program with flags: ${FLAGS[@]}"
-comp_time gcc "$SOURCE_FILES_LOCATION/$SOURCE_FILE" -o "$BIN_FILES_LOCATION/$OUTPUT_BINARY" "${FLAGS[@]}"
+if $WINDOWS; then
+    echo "Compiling program for windows with flags: ${FLAGS[@]}"
+    # comp_time gcc "$SOURCE_FILES_LOCATION/$SOURCE_FILE" -o "$BIN_FILES_LOCATION/$OUTPUT_BINARY_WINDOWS" "${FLAGS[@]}"
+
+else
+    echo "Compiling program for linux with flags: ${FLAGS[@]}"
+    comp_time gcc "$SOURCE_FILES_LOCATION/$SOURCE_FILE" -o "$BIN_FILES_LOCATION/$OUTPUT_BINARY_LINUX" "${FLAGS[@]}"
+fi
 
 # Check if the compilation was successful
 if [ $? -eq 0 ]; then

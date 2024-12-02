@@ -1,6 +1,6 @@
 #include "game.h"
 
-int main(){
+int main(int argc, char *argv[]){
 
     SDL_Window* window = NULL;
     SDL_Renderer* renderer = NULL;
@@ -10,14 +10,15 @@ int main(){
     if(initCheck != 0)
         return initCheck;
 
-    SDL_Event event;
-
-    texture = loadTexture("assets/textures/test.jpg", &renderer);
+    texture = loadTexture("../assets/textures/test.jpg", &renderer);
 
     if(texture == NULL)
         return -6;
 
+    SDL_Event event;
+
     unsigned char quit = 0;
+
     while(!quit){
         while(SDL_PollEvent(&event)){
             switch(event.type){
@@ -40,11 +41,7 @@ int main(){
         SDL_Delay(1);
     }
 
-    SDL_Log("Game closes");
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-
-    SDL_Quit();
+    closeGame(&window, &renderer);
 
     return 0;
 }
