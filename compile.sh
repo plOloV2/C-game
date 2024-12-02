@@ -81,7 +81,7 @@ fi
 
 # Check if the compilation was successful
 if [ $? -eq 0 ]; then
-    echo "Compilation successful. Output binary is $OUTPUT_BINARY"
+    echo "Compilation successful."
 else
     echo "Compilation failed."
     exit 1
