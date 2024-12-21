@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-struct gameState
+struct Inputs
 {
     uint32_t keysPressed;
     uint8_t quit;
@@ -8,8 +8,8 @@ struct gameState
     float mouseY;
 };
 
-struct gameState* initGameState(){
-    struct gameState* result = (struct gameState*) malloc(sizeof(uint8_t) + sizeof(uint32_t) + sizeof(float)*2);
+struct Inputs* initInputs(){
+    struct Inputs* result = (struct Inputs*) malloc(sizeof(uint8_t) + sizeof(uint32_t) + sizeof(float)*2);
     if(result == NULL)
         return NULL;
 
@@ -39,7 +39,7 @@ enum KeyPress
     MOUSE_RIGHT_KEY_FREE
 };
 
-void eventHandler(struct gameState* game, SDL_Event event){
+void eventHandler(struct Inputs* game, SDL_Event event){
 
     game->keysPressed &= ~(1 << MOUSE_LEFT_KEY_FREE);
     game->keysPressed &= ~(1 << MOUSE_RIGHT_KEY_FREE);
