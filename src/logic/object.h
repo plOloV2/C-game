@@ -1,3 +1,4 @@
+#include <stdlib.h>
 struct Object
 {
     uint8_t posX;

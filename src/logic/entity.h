@@ -1,3 +1,4 @@
+#include <stdlib.h>
 struct Entity
 {
     uint8_t Level;
