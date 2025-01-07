@@ -1,6 +1,8 @@
 #include <stdlib.h>
 struct Object
 {
+    uint8_t id;
+
     uint8_t posX;
     uint8_t posY;
     
