@@ -21,6 +21,10 @@ enum item_types
     ARMOR_HANDS,
     ARMOR_LEGS,
     BOOTS,
+    RING,
+    WEAPON_MELE,
+    WEAPON_RANGE,
+    ITEAM,
     CONSUMABLE
 };
 

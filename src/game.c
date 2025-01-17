@@ -15,10 +15,10 @@ int main(int argc, char *argv[]){
     if(inputs == NULL)
         return -5;
 
-    texture = loadTexture("../assets/textures/test.jpg", &renderer);
+    // texture = loadTexture("../assets/textures/test.jpg", &renderer);
 
-    if(texture == NULL)
-        return -6;
+    // if(texture == NULL)
+    //     return -6;
 
     SDL_Event event;
 

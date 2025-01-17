@@ -1,5 +1,3 @@
-#include <stdlib.h>
-
 struct Inputs
 {
     uint32_t keysPressed;
