@@ -32,7 +32,7 @@ int main(int argc, char *argv[]){
 
         SDL_RenderPresent(renderer);
         SDL_Delay(1);
-        SDL_Log("%i\nx:%f\ny:%f\n", inputs->keysPressed, inputs->mouseX, inputs->mouseY);
+        SDL_Log("buttons:%i\nx:%f\ny:%f\n", inputs->keysPressed, inputs->mouseX, inputs->mouseY);
 
     }
 
