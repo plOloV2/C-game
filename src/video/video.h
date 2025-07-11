@@ -19,11 +19,6 @@ int initSDL(SDL_Window** window, SDL_Renderer** renderer){
         return -3;
     }
 
-	if(!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)){
-		SDL_Log( "SDL_image error: %s\n", SDL_GetError() );
-        return -4;
-	}
-
     return 0;
 }
 

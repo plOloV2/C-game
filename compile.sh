@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # Define EXACT required versions
-REQUIRED_SDL_VERSION="3.1.7"
-REQUIRED_IMAGE_VERSION="3.1.0"
+REQUIRED_SDL_VERSION="3.2.16"
+REQUIRED_IMAGE_VERSION="3.3.0"
 REQUIRED_MIXER_VERSION="3.0.0"
+REQUIRED_TTF_VERSION="3.3.0"
+
 
 comp_time() {
     local start=$(date +%s%3N)
@@ -97,9 +99,10 @@ check_sdl_version() {
 check_sdl_version sdl3 $REQUIRED_SDL_VERSION
 check_sdl_version sdl3-image $REQUIRED_IMAGE_VERSION
 check_sdl_version sdl3-mixer $REQUIRED_MIXER_VERSION
+check_sdl_version sdl3-ttf $REQUIRED_TTF_VERSION
 
 # Get SDL flags
-SDL_FLAGS=($(pkg-config sdl3 sdl3-image sdl3-mixer --cflags --libs))
+SDL_FLAGS=($(pkg-config sdl3 sdl3-image sdl3-mixer sdl3-ttf --cflags --libs))
 FLAGS+=("${SDL_FLAGS[@]}")
 
 if $IGNORE; then
