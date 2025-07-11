@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Define EXACT required versions
+REQUIRED_SDL_VERSION="3.1.7"
+REQUIRED_IMAGE_VERSION="3.1.0"
+REQUIRED_MIXER_VERSION="3.0.0"
+
 comp_time() {
     local start=$(date +%s%3N)
     "$@"
@@ -71,12 +76,30 @@ FLAGS+=(-Wall -Wextra)
 
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
 
-# Handle SDL flags safely
-SDL_FLAGS=()
-if ! SDL_FLAGS=($(pkg-config sdl3 sdl3-image sdl3-mixer --cflags --libs)); then
-    echo "Error: Failed to retrieve SDL3 flags using pkg-config. Is SDL3 installed?"
-    exit 1
-fi
+# Verify SDL versions
+check_sdl_version() {
+    local lib=$1
+    local required_version=$2
+    
+    if ! pkg-config --exists $lib; then
+        echo >&2 "Error: $lib is not installed"
+        exit 1
+    fi
+    
+    local installed_version=$(pkg-config --modversion $lib)
+    if [ "$installed_version" != "$required_version" ]; then
+        echo >&2 "Error: Wrong $lib version. Required: $required_version, Found: $installed_version"
+        exit 1
+    fi
+}
+
+# Check specific library versions
+check_sdl_version sdl3 $REQUIRED_SDL_VERSION
+check_sdl_version sdl3-image $REQUIRED_IMAGE_VERSION
+check_sdl_version sdl3-mixer $REQUIRED_MIXER_VERSION
+
+# Get SDL flags
+SDL_FLAGS=($(pkg-config sdl3 sdl3-image sdl3-mixer --cflags --libs))
 FLAGS+=("${SDL_FLAGS[@]}")
 
 if $IGNORE; then
