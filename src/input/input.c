@@ -1,16 +1,14 @@
 #include "input_lib.h"
 
 struct Inputs* initInputs(){
-    struct Inputs* result = (struct Inputs*) malloc(sizeof(struct Inputs));
-    if(result == NULL)
-        return NULL;
 
-    result->keysPressed = 0;
-    result->quit = 0;
-    result->mouseX = 0;
-    result->mouseY = 0;
+    struct Inputs* result = calloc(1, sizeof(struct Inputs));
+
+    if(!result)
+        SDL_Log("Inputs struct alocation failed");
 
     return result;
+    
 }
 
 void eventHandler(struct Inputs* game, SDL_Event event){
@@ -165,6 +163,7 @@ void eventHandler(struct Inputs* game, SDL_Event event){
                         game->keysPressed |= (1 << MOUSE_RIGHT_KEY_FREE);
                         break;
                 }
+                break;
 
             case SDL_EVENT_MOUSE_BUTTON_UP:                     //mouse button release detection
                 switch(event.button.button){
@@ -178,6 +177,7 @@ void eventHandler(struct Inputs* game, SDL_Event event){
                             game->keysPressed &= ~(1 << MOUSE_KEY_PRESS_RIGHT);
                         break;
                 }
+                break;
 
             case SDL_EVENT_MOUSE_MOTION:                        //mouse motion detection
                 SDL_GetMouseState(&game->mouseX, &game->mouseY);

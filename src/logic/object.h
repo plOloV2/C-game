@@ -1,3 +1,6 @@
+#ifndef OBJ_H
+#define OBJ_H
+
 #include <stdlib.h>
 struct Object
 {
@@ -14,7 +17,7 @@ struct Object
 };
 
 struct Object* NewObject(char* name, uint8_t posX, uint8_t posY){
-    struct Object* result = (struct Object*) malloc(sizeof(uint8_t)*3 + sizeof(char*) + sizeof(struct Entity*));
+    struct Object* result = calloc(1, sizeof(struct Object));
 
     result->posX = posX;
     result->posY = posY;
@@ -24,3 +27,5 @@ struct Object* NewObject(char* name, uint8_t posX, uint8_t posY){
 
     return result;
 }
+
+#endif

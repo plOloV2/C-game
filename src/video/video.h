@@ -2,7 +2,7 @@
 
 int initSDL(SDL_Window** window, SDL_Renderer** renderer){
 
-    if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_AUDIO) < 0){
+    if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_AUDIO) <= 0){
         SDL_Log("SDL_INIT error: %s", SDL_GetError());
         return -1;
     }

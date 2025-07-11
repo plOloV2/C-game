@@ -37,7 +37,8 @@ enum BUFFS
 
 
 struct Entity* CreatEntity(uint8_t Lvl, uint16_t max_HP, uint8_t Speed, uint8_t Attack, uint8_t Deffence, uint8_t SAttack, uint8_t SDeffence){
-    struct Entity* result = (struct Entity*) malloc(sizeof(uint8_t)*6 + sizeof(uint16_t) + sizeof(uint32_t) + sizeof(struct Item**));
+
+    struct Entity* result = calloc(1, sizeof(struct Entity));
 
     result->Level = Lvl;
     result->max_HP = max_HP;
